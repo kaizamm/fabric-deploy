@@ -1,0 +1,1 @@
+fab -f deploy.py load_config:target=hrms,env=dev deploy:action=stop | tee deploy.log  

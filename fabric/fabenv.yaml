@@ -1,0 +1,44 @@
+---
+# Fab environment
+fab.env.roledefs:
+  'hrms-dev-app':
+    - 'appadmin@172.16.250.19'
+    - 'appadmin@172.16.37.23'
+  'hrms-dev-nginx':
+    - 'nginxadmin@172.16.1.198'
+    - 'nginxadmin@172.16.37.23'
+fab.env.passwords:
+  'appadmin@172.16.250.19:22': '000000'
+  'appadmin@172.16.37.23:22': '000000'
+  'nginxadmin@172.16.1.198:22': '000000'
+  'nginxadmin@172.16.37.23:22': '000000'
+
+# Project environment
+hrms:
+  dev:
+    apps:
+      'action':
+        'start': '~/scripts/tomcat/start.sh'
+        'stop': '~/scripts/tomcat/stop.sh'
+        'restart': '~/scripts/tomcat/restart.sh'
+        'update': '~/scripts/update.sh'
+      'appadmin@172.16.250.19':
+        tomcat_home: '/usr/tomcat'
+        host: '172.16.250.19'
+        port: '8080'
+      'appadmin@172.16.37.23':
+        tomcat_home: '/usr/tomcat_7.25'
+        host: '172.16.37.23'
+        port: '8888'
+    nginx:
+      'action':
+        'up': '~/scripts/nginx/up.sh'
+        'down': '~/scripts/nginx/down.sh'
+        'cache_clean': '~/scripts/nginx/cache_clean.sh'
+      'nginxadmin@172.16.1.198':
+        daemon: '/usr/local/nginx/sbin/nginx'
+        conf: '/usr/local/nginx/conf/nginx.conf'
+      'nginxadmin@172.16.37.23':
+        daemon: '/usr/local/nginx-1.8.0/sbin/nginx'
+        conf: '/usr/local/nginx/conf/vhost/hrms.quarkfinance.conf'
+
